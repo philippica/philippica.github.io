@@ -10,7 +10,17 @@
 		</style>
 	</head>
 	<body>
-		<canvas id = "myCanvas" width = "1000" height = "600"></canvas>
+		<div id = "Stage">
+			<canvas id = "myCanvas" width = "1000" height = "600"></canvas>
+		</div>
+		<div id = "pannel">
+			<button id = "drag" onclick = "ppSetModeDrag()">drag</button>
+			<button id = "paint" onclick = "ppSetModePaint()">paint</button>
+			<button id = "test" onclick = "test()">test</button>
+			<form>
+				<input type = "file" id = "file" onChange = "ppOpenFile(this)">
+			</form>
+		</div>
 		<script type = "text/javascript" src= "pp.js"></script>
 	</body>
 </html>
