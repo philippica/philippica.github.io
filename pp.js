@@ -1,3 +1,5 @@
+// Last update time: Oct.28 2015 5pm
+
 var ppMode = "paint";
 var ppPoint = function(x, y)
 {
