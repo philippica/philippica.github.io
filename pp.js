@@ -18,6 +18,11 @@ function test()
 	context.putImageData(ppImgData, 100, 0);
 }
 
+function ppPick()
+{
+	ppMode = "pick";
+}
+
 
 function ppSetModeDrag()
 {
@@ -44,6 +49,13 @@ function ppCanvasInit()
 	context.lineWidth = 5;
 }
 
+function ppBlur()
+{
+	ppImgData = context.getImageData(0, 0, ppCanvasWidth, ppCanvasHeight);
+	
+}
+
+
 
 function ppDrag(curX, curY)
 {
@@ -56,22 +68,65 @@ function ppDrag(curX, curY)
 function ppOpenFile(ppFile)
 {
 	var image = new Image();
-	image.src = "1-1401261H42XJ.jpg";
+	var fileName = ppFile.value.substring(ppFile.value.lastIndexOf('\\') + 1);
+	image.src = "foo.jpg";
+	image.crossOrgin = "Anonymous";
+
 	image.onload = function()
 	{
 		context.drawImage(image, 0, 0);
 	}
-	alert(ppFile.value);
 }
 
 
+function ppInvert()
+{
+	var ppImgData = context.getImageData(0, 0, ppCanvasWidth, ppCanvasHeight);
+	var ppData = ppImgData.data;
+	for(var i = 0; i < ppData.length; i += 4)
+	{
+		ppData[i] = 0xFF - ppData[i];
+		ppData[i + 1] = 0xFF - ppData[i + 1];
+		ppData[i + 2] = 0xFF - ppData[i + 2];
+	}
+	context.putImageData(ppImgData, 0, 0);	
+}
 
 
-
-
-
-
-
+function ppBlur()
+{
+	var ppImgData = context.getImageData(0, 0, ppCanvasWidth, ppCanvasHeight);
+	var ppData = ppImgData.data;
+	var ppTemp = ppData;
+	var radius = 3;
+	var length = ppData.length; 
+	for(var i = 0; i < ppCanvasHeight; i++)
+	{
+		for(var j = 0; j < ppCanvasWidth; j++)
+		{
+			var x = (i * ppCanvasWidth + j) * 4;
+			var ppB = 0, ppR = 0, ppG = 0, cnt = 0;
+			for(var m = i - radius; m < i + radius; m++)
+			{
+				if (m < 0 || m > ppCanvasHeight)continue;
+				for(var n = j - radius; n < j + radius; n++)
+				{
+					cnt++;
+					if (n < 0 || n > ppCanvasWidth)continue;
+					var xx = (m * ppCanvasWidth + n) * 4;
+					ppR += ppData[xx];
+					ppG += ppData[xx + 1];
+					ppB += ppData[xx + 2];
+				}
+			}
+			ppTemp[x] = ppR / cnt;
+			ppTemp[x + 1] = ppG / cnt;
+			ppTemp[x + 2] = ppB / cnt;
+		}
+	}
+	ppData = ppTemp;
+	context.putImageData(ppImgData, 0, 0);	
+}
 
 
 $('#myCanvas').mouseleave(function(e)
@@ -138,6 +193,9 @@ $('#myCanvas').mousemove(function(e)
 			var mouseX = e.pageX - this.offsetLeft;
 			var mouseY = e.pageY - this.offsetTop;
 			ppDrawLine(mouseX, mouseY);
+		}
+		if(ppMode == "pick")
+		{
 		}
 		if(ppMode == "drag")
 		{
