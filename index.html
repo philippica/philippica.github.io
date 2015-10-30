@@ -7,18 +7,25 @@
 		<style>
 			*{margin:0 ; padding : 0;}
 			html, body{background-color : black;  height : 100%;width: 100%;}
+			.colo{background-color:white; width : 130px;}
+			.panel{float:right;margin-right:10px;margin-top:10px;}
 		</style>
 	</head>
 	<body>
-		<div id = "Stage">
-			<canvas id = "myCanvas" width = "1000" height = "600"></canvas>
+		<span id = "Stage">
+			<canvas id = "myCanvas" width = "1000" height = "500"></canvas>
+		</span>
+		<div class = "panel">
+			<div id = "colo" class = "colo">rgb</div>
+			<input type = "range" id = "range" min = 0 max = 10 value = 0>
 		</div>
-		<div id = "pannel">
+		<div id = "button">
 			<button id = "drag" onclick = "ppSetModeDrag()">drag</button>
 			<button id = "paint" onclick = "ppSetModePaint()">paint</button>
 			<button id = "invert" onclick = "ppInvert()">invert</button>
-			<button id = "blur" onclick = "ppBlur()">blur</button>
+			<button id = "blur" onclick = "ppSetModeBlur()">blur</button>
 			<button id = "pick" onclick = "ppPick()">pick</button>
+			<button id = "fill" onclick = "ppFill()">fill</button>
 			<button id = "test" onclick = "test()">test</button>
 			<form>
 				<input type = "file" id = "file" onChange = "ppOpenFile(this)">
