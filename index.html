@@ -6,19 +6,22 @@
 		<script type = "text/javascript" src="jquery.js"></script>
 		<style>
 			*{margin:0 ; padding : 0;}
-			html, body{background-color : black;  height : 100%;width: 100%;}
+			html, body{background-color : black;}
 			.colo{background-color:white; width : 130px;}
-			.panel{float:right;margin-right:10px;margin-top:10px;}
+			.panel{float:right;margin-right:10px;margin-top:10px;width:20%}
+			.stage{width:70%;}
 		</style>
 	</head>
 	<body>
-		<span id = "Stage">
-			<canvas id = "myCanvas" width = "1000" height = "500"></canvas>
+		<span id = "stage" class = "stage">
+			<canvas id = "myCanvas" width = "700" height = "400"></canvas>
+
 		</span>
-		<div class = "panel">
+		<span class = "panel">
 			<div id = "colo" class = "colo">rgb</div>
 			<input type = "range" id = "range" min = 0 max = 10 value = 0>
-		</div>
+			<textarea id = "color" rows = 1></textarea>
+		</span>
 		<div id = "button">
 			<button id = "drag" onclick = "ppSetModeDrag()">drag</button>
 			<button id = "paint" onclick = "ppSetModePaint()">paint</button>
@@ -27,6 +30,7 @@
 			<button id = "pick" onclick = "ppPick()">pick</button>
 			<button id = "fill" onclick = "ppFill()">fill</button>
 			<button id = "test" onclick = "test()">test</button>
+			<button id = "T" onclick = "ppSetModeT()">T</button>
 			<form>
 				<input type = "file" id = "file" onChange = "ppOpenFile(this)">
 			</form>
