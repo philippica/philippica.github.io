@@ -10,6 +10,7 @@
 			.colo{background-color:white; width : 130px;}
 			.panel{float:right;margin-right:10px;margin-top:10px;width:20%}
 			.stage{width:70%;}
+			#myCanvas{border-style: solid; border-width: 5px;border-color: yellow;}
 		</style>
 	</head>
 	<body>
@@ -27,10 +28,11 @@
 			<button id = "paint" onclick = "ppSetModePaint()">paint</button>
 			<button id = "invert" onclick = "ppInvert()">invert</button>
 			<button id = "blur" onclick = "ppSetModeBlur()">blur</button>
-			<button id = "pick" onclick = "ppPick()">pick</button>
-			<button id = "fill" onclick = "ppFill()">fill</button>
-			<button id = "test" onclick = "test()">test</button>
+			<button id = "pick" onclick = "ppSetModePick()">pick</button>
+			<button id = "fill" onclick = "ppSetModeFill()">fill</button>
 			<button id = "T" onclick = "ppSetModeT()">T</button>
+			<button id = "test" onclick = "test()">test</button>
+			<button id = "zoomin" onclick = "ppSetModeZoomIn()">zoom in</button>
 			<form>
 				<input type = "file" id = "file" onChange = "ppOpenFile(this)">
 			</form>
